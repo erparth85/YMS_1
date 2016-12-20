@@ -3,7 +3,7 @@ namespace PMM.Core
 {
   public abstract class BaseEntity
     {
-      
+      //sadf
       public int Id { get; set; }
       public DateTime? CreatedDate { get; set; }
       public DateTime? UpdatedDate { get; set; }

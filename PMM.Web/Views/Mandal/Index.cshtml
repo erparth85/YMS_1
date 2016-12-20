@@ -1,0 +1,74 @@
+﻿@model MandalListModel
+@using PMM.Web.Models.Mandal;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Manage Mandal
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2 pr5 pl0">
+                        <a href="@Url.RouteUrl("ManageMandal")">
+                            <input type="button" value="Add New" id="btnAdd" class="btn btn-block btn-primary" />
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="mandal-list pt10">
+
+                        @Html.Partial("_MandalList")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        LoadMandalList();
+    });
+    function LoadMandalList() {
+        $.ajax({
+            url: '@Url.RouteUrl("MandalList")',
+            data: {},
+            success: function (data) {
+
+                $(".mandal-list").html(data);
+                //$(".page-number").removeClass("selectedPage");
+                //$("#page" + pagenumber).addClass("selectedPage");
+
+            }
+        });
+    }
+
+    function DeleteMandal(id)
+    {
+        if (confirm('Are you sure want to delete this mandal detail?')) {
+            $.ajax({
+                url: '@Url.RouteUrl("DeleteMandal")',
+                data: { "id": id},
+                success: function (data) {
+
+                    $(".mandal-list").html(data);
+                    //$(".page-number").removeClass("selectedPage");
+                    //$("#page" + pagenumber).addClass("selectedPage");
+
+                }
+            });
+        }
+    }
+</script>

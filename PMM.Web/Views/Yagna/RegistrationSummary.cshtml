@@ -1,0 +1,79 @@
+﻿@model RegistrationSummaryModel
+@using PMM.Web.Models.Yagna;
+
+@{
+    ViewBag.Title = "RegistrationSummary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                REGISTRATION SUMMARY
+            </h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    @if (Model != null)
+                    {
+
+                        <div class="col-md-12 pt10">
+                            <div class="alert alert-success alert-dismissable">
+
+                                <i class="fa fa-bullhorn"></i>  @Model.PopupHeader
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt10">
+                            <table class="table table-bordered table-hover">
+                                <tr class="headings">
+                                    <th>Id</th>
+                                    <th>FullName</th>
+                                    <th>ContactNo</th>
+                                    <th>Sankalp</th>
+                                </tr>
+                                <tr class="pointer">
+                                    <td>@Model.PRN</td>
+                                    <td>@Model.FullName</td>
+                                    <td>@Model.MobileNumber</td>
+                                    <td>@Model.SankalpAmount</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="col-md-12 pt10">
+                            <p>Please try again to add/update yajman detail.</p>
+                        </div>
+                    }
+
+                    <div class="col-md-12 text-center pt10 pb10">
+                        <a href="@Url.RouteUrl("Yagna")">
+                            <input type="button" class="btn btn-primary" value="Back To List" />
+                        </a>
+                        <a href="@Url.RouteUrl("Refferal")">
+                            <input type="button" class="btn btn-primary" value="Back To Referral List" />
+                        </a>
+                        <a href="@Url.RouteUrl("ManageYagnaSeva")">
+                            <input type="button" class="btn btn-primary" value="Add New Yajman" />
+                        </a>
+                        <a href="@Url.RouteUrl("ManageReferral")">
+                            <input type="button" class="btn btn-primary" value="Add Referral Yajman" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

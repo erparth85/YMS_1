@@ -1,0 +1,101 @@
+﻿@*  @using (Html.BeginRouteForm("Login", FormMethod.Post, new { onsubmit = "checkValue();" }))
+    {  
+ @Html.AntiForgeryToken()    
+   
+        *@
+
+<div class="row pl20 pr20">
+    <div class="col-md-12 pt10 font16 bold-font">
+        Existing User Login Here    
+    </div>
+
+    <div class="col-md-12 pt10">
+        <label id="lblsummary" class="error font11"></label>
+        @Html.ValidationMessage("error")
+    </div>
+
+    <div class="col-md-12 pt5">
+
+        <input type="text" id="Username" class="form-control width100Per" placeholder="Enter UserName..." onchange="return verifyControl(this.id);" />
+        <div class="pt2">
+            <label id="lblUsernameError" class="error font11"></label>
+        </div>
+    </div>
+    <div class="col-md-12 pt5 ">
+
+        <input type="password" id="Password" class="form-control width100Per" placeholder="Enter Password..." onchange="return verifyControl(this.id);" />
+        <div class="pt2">
+            <label id="lblPasswordError" class="error font11"></label>
+        </div>
+    </div>
+    <div class="col-md-12 pt10 pb10">
+        <div class="col-md-2 pl0 pr0">
+            <input type="button" value="Login" onclick="return checkValue();" class="btn btn-block btn-primary btn-flat" />
+        </div>
+        <div class="col-md-10"></div>
+
+        @* <input type="submit" value="Login" />*@
+
+
+    </div>
+    <div class="col-md-12 pt10 pb10"></div>
+</div>
+
+<script type="text/javascript">
+    function verifyControl(input) {
+        if ($.trim($("#" + input).val()).length > 0) {
+            $("#lbl" + input + "Error").text("");
+        }
+    }
+    $(function () {
+        $(document).keydown(function (event) {
+            if (event.which === 13) {
+                checkValue();
+                $("#btnAdd").prop('disabled', true);
+            }
+        });
+
+        //var buttonpress = { "EnterKey": 13 };
+        //$("body").keypress(function (e) {
+        //    if (e.which == buttonpress.EnterKey) {
+        //        checkValue();
+        //        return false;
+        //    }
+        //});
+    });
+    function checkValue() {
+        if ($("#Username").val() == '') {
+            $("#lblUsernameError").text("Please enter your username");
+        }
+        if ($("#Password").val() == '') {
+            $("#lblPasswordError").text("Please enter your password");
+        }
+        if ($.trim($("#Password").val()).length > 0 && $.trim($("#Username").val()).length > 0) {
+            $.ajax({
+                type: "POST",
+                url: '@(Url.RouteUrl("UserLogin"))',
+                data: {
+                    'Username': $("#Username").val(),
+                    'Password': $("#Password").val()
+                },
+                success: function (response) {
+                    if (response.status == "success") {
+                        $("#lblsummary").text("");
+                        window.location.href = "/dashboard";
+                        return true;
+                    }
+                    $("#lblsummary").text(response.status);
+                    return false;
+                },
+                failure: function (error) {
+                    $("#lblsummary").text(error);
+                    return false;
+                }
+            });
+        }
+        $("#btnAdd").prop('disabled', false);
+        return false;
+    }
+
+</script>
+

@@ -1,0 +1,111 @@
+﻿@model SevaTypeDetailModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                MANAGE SEVATYPE
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginRouteForm("ManageSevaType", FormMethod.Post, new { @id = "FrmSevaType" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(t => t.Id)
+                <div class="x_panel">
+
+                    <div class="x_content">
+                        <div class="col-md-12 pt10 ">
+                            <span class="section">
+                                Add | Update Seva Type Detail
+                            </span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-12 pt10">
+
+                            <label for="SevaGradeId">Grade</label>
+                            @Html.DropDownListFor(t => t.SevaGradeId,Model.SevaGrades, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForSevaGrade })
+                            @Html.ValidationMessageFor(t => t.SevaGradeId)
+
+                        </div>
+                        <div class="col-md-12 pt10">
+
+                            <label for="SevaTypeText">Type</label>
+                            @Html.TextBoxFor(t => t.SevaTypeText, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForSevaType })
+                            @Html.ValidationMessageFor(t => t.SevaTypeText)
+
+                        </div>
+                        <div class="col-md-12 pt10">
+
+                            <label for="Amount">Amount</label>
+                            @Html.TextBoxFor(t => t.Amount, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForSankalpAmount, @maxlength = 9, onkeypress = "return isNumberkey(event);" })
+                            @Html.ValidationMessageFor(t => t.Amount)
+
+                        </div>
+
+                        <div class="col-md-12 pb10">
+                            <div class="col-md-1 pt10 pr0">
+                                <input type="submit" value="Save" class="btn btn-success" />
+                            </div>
+                            <div class="col-md-1 pt10 pl0 pr0"><input type="reset" value="Reset" class="btn btn-info" /></div>
+                            <div class="col-md-1 pt10 pl0 pr0">
+                                <a href="@Url.RouteUrl("SevaType")">
+                                    <input type="button" value="Cancel" class="btn btn-danger" />
+                                </a>
+                            </div>
+                            <div class="col-md-9 pt10"></div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        jQuery.validator.addMethod("SelectedGrade", validateDropdownValue, "@CommonHelper.PlaceHolderDrdForSevaGrade");
+
+        $("#FrmSevaType").validate({
+
+            rules: {
+                'SevaTypeText': { required: true },
+                "SevaGradeId": { SelectedGrade: '0' },
+                "Amount": { required: true }
+            },
+            messages:
+            {
+                'SevaTypeText': { required: '@CommonHelper.ValMsgTxtForSevaType' },
+
+                "SevaGradeId": {
+                    SelectedGrade: '@CommonHelper.ValMsgDrdForSevaGrade'
+                },
+
+                "Amount": { required: '@CommonHelper.ValMsgTxtForAmount' },
+
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+    })
+
+    function validateDropdownValue(value, element, param) {
+
+        if (value == param) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

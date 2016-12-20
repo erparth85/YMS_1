@@ -1,0 +1,145 @@
+﻿@model YagnaSevaListModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Manage Yagna
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2 pr5 pl0">
+                        <a href="@Url.RouteUrl("ManageYagnaSeva")">
+                            <input type="button" value="Add New" id="btnAdd" class="btn btn-block btn-primary" />
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    @using (Html.BeginRouteForm("SearchYagnaSeva", FormMethod.Post, new { id = "searchYagna" }))
+                    {
+                        <div class="col-md-12">
+                            <div class="col-md-3 pt10">
+                                @Html.TextBoxFor(model => model.Filter.Name, new { @class = "form-control", placeholder = "Enter Name..." })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                @Html.TextBoxFor(model => model.Filter.Mobile, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForMobileNo })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                @Html.TextBoxFor(model => model.Filter.PRN, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForPRNNo })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                @Html.DropDownListFor(model => model.Filter.CityId, Model.Filter.CityList, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForCity })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="col-md-3 pt10">
+                                @Html.DropDownListFor(model => model.Filter.MandalId, Model.Filter.MandalList, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForMandal })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                @Html.DropDownListFor(model => model.Filter.SevaGradeId, Model.Filter.SevaGrades, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForSevaGrade })
+                            </div>
+                            <div class="col-md-1 pt10">
+                                <input type="submit" id="search-yagna" value="Search" class="btn btn-success" />
+                            </div>
+                            <div class="col-md-1 pt10">
+                                <a href="@Url.RouteUrl("Yagna")">
+                                    <input type="button" id="search-yagna" value="Reset" class="btn btn-block btn-warning" />
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 pt10"></div>
+                        </div>
+                            <div class="col-md-12">
+                                <div class="col-md-4 pt10">
+                                    @*@Html.TextBoxFor(model => model.Filter.BookNo, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForBookNo, @maxlength = 5, onkeypress = "return isNumberkey(event);" })*@
+                                </div>
+                                <div class="col-md-4 pt10">
+                                    @*@Html.TextBoxFor(model => model.Filter.ReceiptNo, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForReceiptNo, @maxlength = 5, onkeypress = "return isNumberkey(event);" })*@
+                                </div>
+
+                            </div>
+
+                    }
+                    <div class="yagna-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    LoadYagnaSevaList(1);
+
+    function LoadYagnaSevaList(pageNumber) {
+        $(".yagna-list").load('/filter/seva?PageNumber=' + pageNumber);
+        $(".page-number").removeClass("selectedPage");
+        $("#page" + pageNumber).addClass("selectedPage");
+    }
+    $(function () {
+        $(document).on("click", ".page-number", function () {
+            var pageNo = parseInt($(this).html());
+            LoadYagnaSevaList(pageNo);
+        });
+        $("#searchYagna").submit(function (e) {
+            e.preventDefault();
+            $form = $(this);
+            obj = $form.serialize();
+            $.ajax({
+                url: $form.attr('action'),
+                type: "POST",
+                data: obj,
+                success: function (data) {
+                    $(".yagna-list").html(data);
+                }
+            });
+            return false;
+        })
+
+
+
+        $("#Filter_CityId").change(function () {
+            $('#Filter_MandalId').empty();
+            $.get("/mandal/loadmandalbycity", { cityId: $("#Filter_CityId").val() }, function (response) {
+
+                $.each(response.data, function (key, value) {
+                    $("#Filter_MandalId").append($("<option value='" + value.Value + "'>" + value.Text + "</option>"));
+                });
+
+            });
+        });
+    });
+
+    function deleteYagnaSeva(id) {
+        if (confirm('Are you sure want to delete this yagna detail?')) {
+            $.ajax({
+                url: '@Url.RouteUrl("DeleteSeva")',
+                data: { "id": id },
+                success: function (data) {
+
+                    $(".yagna-list").html(data);
+                    //$(".page-number").removeClass("selectedPage");
+                    //$("#page" + pagenumber).addClass("selectedPage");
+
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{369E2B98-4041-4EAF-A724-0D49820133A3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMM.Web</RootNamespace>
+    <AssemblyName>PMM.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LearnRepo\Repo\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\LearnRepo\Repo\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.6.1.0.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=3.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.6.1.0.0\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.2.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC4.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportViewerForMvc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\MandalController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CityController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SevaGradeController.cs" />
+    <Compile Include="Controllers\SevaTypeController.cs" />
+    <Compile Include="Controllers\YagnaController.cs" />
+    <Compile Include="Extension\MappingExtension.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mandal\MandalDetailModel.cs" />
+    <Compile Include="Models\Mandal\MandalListModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CityListModel.cs" />
+    <Compile Include="Models\CityModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Paging\BasePagingModel.cs" />
+    <Compile Include="Models\Report\FilterSummaryModel.cs" />
+    <Compile Include="Models\Yagna\AccountDetailModel.cs" />
+    <Compile Include="Models\Yagna\ErrorSummaryModel.cs" />
+    <Compile Include="Models\Yagna\FilterDataModel.cs" />
+    <Compile Include="Models\Yagna\BasicDetailModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\Yagna\ReferralYagnaSevaModel.cs" />
+    <Compile Include="Models\Yagna\RefferalDetailModel.cs" />
+    <Compile Include="Models\Yagna\RegistrationErrorTypes.cs" />
+    <Compile Include="Models\Yagna\SevaGradeDetailModel.cs" />
+    <Compile Include="Models\Yagna\SevaTypeDetailModel.cs" />
+    <Compile Include="Models\Yagna\RegistrationSummaryModel.cs" />
+    <Compile Include="Models\Yagna\SvikrutiPatrakDetailModel.cs" />
+    <Compile Include="Models\Yagna\TransactionDetailModel.cs" />
+    <Compile Include="Models\Yagna\YagnaDayDetailModel.cs" />
+    <Compile Include="Models\Yagna\YagnaSevaListModel.cs" />
+    <Compile Include="Models\Yagna\YagnaSevaModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\AccountDetailValidator.cs" />
+    <Compile Include="Validators\AreaDetailValidator.cs" />
+    <Compile Include="Validators\LoginValidator.cs" />
+    <Compile Include="Validators\ReferralDetailValidator.cs" />
+    <Compile Include="Validators\SevaDetailValidator.cs" />
+    <Compile Include="Validators\SevaTypeDetailValidator.cs" />
+    <Compile Include="Validators\SvikrutiPatrakModelDetailValidator.cs" />
+    <Compile Include="Validators\TransactionDetailValidator.cs" />
+    <Compile Include="Validators\YagnaDaysValidator.cs" />
+    <Compile Include="Validators\YagnaDetailValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\template\css\bootstrap-multiselect.min.css" />
+    <Content Include="Content\template\img\magnify.gif" />
+    <Content Include="Content\template\img\loader.gif" />
+    <Content Include="Content\template\js\bootstrap-multiselect.min.js" />
+    <Content Include="Content\template\plugin\chosen\chosen-sprite.png" />
+    <Content Include="Content\template\plugin\chosen\chosen.css" />
+    <Content Include="Content\template\plugin\chosen\chosen.jquery.js" />
+    <Content Include="Content\template\plugin\chosen\chosen.jquery.min.js" />
+    <Content Include="Content\template\plugin\chosen\select.css" />
+    <Content Include="Content\template\js\jquery.datetimepicker.js" />
+    <Content Include="Content\template\js\common.js" />
+    <Content Include="Content\template\js\jquery-2.1.1.min.js" />
+    <Content Include="Content\template\js\jquery-ui-1.9.2.min.js" />
+    <Content Include="Content\template\js\jquery-ui.js" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="Content\template\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\template\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="Content\template\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="Content\template\bootstrap\dist\js\npm.js" />
+    <Content Include="Content\template\css\animate.min.css" />
+    <Content Include="Content\template\css\custom.css" />
+    <Content Include="Content\template\css\main.css" />
+    <Content Include="Content\template\fonts\css\font-awesome.css" />
+    <Content Include="Content\template\fonts\css\font-awesome.min.css" />
+    <Content Include="Content\template\fonts\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\template\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\template\img\profile.png" />
+    <Content Include="Content\template\js\bootstrap.min.js" />
+    <Content Include="Content\template\js\custom.js" />
+    <Content Include="Content\template\js\jquery.min.js" />
+    <Content Include="Content\template\js\moment.min2.js" />
+    <Content Include="Content\template\plugin\datepicker\css\datepicker.css" />
+    <Content Include="Content\template\plugin\datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.bg.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.ca.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.cs.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.da.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.de.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.el.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.es.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.fi.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.fr.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.he.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.hr.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.id.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.is.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.it.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.ja.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.kr.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.lt.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.lv.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.ms.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.nb.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.nl.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.pl.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.pt-BR.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.pt.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.ro.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.rs-latin.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.rs.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.ru.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.sk.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.sl.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.sv.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.sw.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.th.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.tr.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.uk.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.zh-CN.js" />
+    <Content Include="Content\template\plugin\datepicker\js\locales\bootstrap-datepicker.zh-TW.js" />
+    <Content Include="Content\template\plugin\progressbar\bootstrap-progressbar.min.js" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\template\plugin\ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\template\plugin\ui\jquery-ui.css" />
+    <Content Include="Content\template\plugin\ui\jquery-ui.min.css" />
+    <Content Include="Content\template\plugin\ui\jquery-ui.min.js" />
+    <Content Include="Content\template\plugin\ui\jquery-ui.structure.min.css" />
+    <Content Include="Content\template\plugin\ui\jquery-ui.theme.min.css" />
+    <Content Include="Content\template\plugin\validator\jquery.validate.min.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\template\fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\template\fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\template\fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\template\fonts\fonts\FontAwesome.otf" />
+    <Content Include="Content\template\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\template\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\template\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\template\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\template\fonts\less\bordered-pulled.less" />
+    <Content Include="Content\template\fonts\less\core.less" />
+    <Content Include="Content\template\fonts\less\fixed-width.less" />
+    <Content Include="Content\template\fonts\less\font-awesome.less" />
+    <Content Include="Content\template\fonts\less\icons.less" />
+    <Content Include="Content\template\fonts\less\larger.less" />
+    <Content Include="Content\template\fonts\less\list.less" />
+    <Content Include="Content\template\fonts\less\mixins.less" />
+    <Content Include="Content\template\fonts\less\path.less" />
+    <Content Include="Content\template\fonts\less\rotated-flipped.less" />
+    <Content Include="Content\template\fonts\less\spinning.less" />
+    <Content Include="Content\template\fonts\less\stacked.less" />
+    <Content Include="Content\template\fonts\less\variables.less" />
+    <Content Include="Content\template\fonts\scss\font-awesome.scss" />
+    <Content Include="Content\template\fonts\scss\_bordered-pulled.scss" />
+    <Content Include="Content\template\fonts\scss\_core.scss" />
+    <Content Include="Content\template\fonts\scss\_fixed-width.scss" />
+    <Content Include="Content\template\fonts\scss\_icons.scss" />
+    <Content Include="Content\template\fonts\scss\_larger.scss" />
+    <Content Include="Content\template\fonts\scss\_list.scss" />
+    <Content Include="Content\template\fonts\scss\_mixins.scss" />
+    <Content Include="Content\template\fonts\scss\_path.scss" />
+    <Content Include="Content\template\fonts\scss\_rotated-flipped.scss" />
+    <Content Include="Content\template\fonts\scss\_spinning.scss" />
+    <Content Include="Content\template\fonts\scss\_stacked.scss" />
+    <Content Include="Content\template\fonts\scss\_variables.scss" />
+    <Content Include="Content\template\less\tables.less" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="Content\template\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\template\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\template\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\template\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\template\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\template\bootstrap\less\alerts.less" />
+    <Content Include="Content\template\bootstrap\less\badges.less" />
+    <Content Include="Content\template\bootstrap\less\bootstrap.less" />
+    <Content Include="Content\template\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Content\template\bootstrap\less\button-groups.less" />
+    <Content Include="Content\template\bootstrap\less\buttons.less" />
+    <Content Include="Content\template\bootstrap\less\carousel.less" />
+    <Content Include="Content\template\bootstrap\less\close.less" />
+    <Content Include="Content\template\bootstrap\less\code.less" />
+    <Content Include="Content\template\bootstrap\less\component-animations.less" />
+    <Content Include="Content\template\bootstrap\less\dropdowns.less" />
+    <Content Include="Content\template\bootstrap\less\forms.less" />
+    <Content Include="Content\template\bootstrap\less\glyphicons.less" />
+    <Content Include="Content\template\bootstrap\less\grid.less" />
+    <Content Include="Content\template\bootstrap\less\input-groups.less" />
+    <Content Include="Content\template\bootstrap\less\jumbotron.less" />
+    <Content Include="Content\template\bootstrap\less\labels.less" />
+    <Content Include="Content\template\bootstrap\less\list-group.less" />
+    <Content Include="Content\template\bootstrap\less\media.less" />
+    <Content Include="Content\template\bootstrap\less\mixins.less" />
+    <Content Include="Content\template\bootstrap\less\modals.less" />
+    <Content Include="Content\template\bootstrap\less\navbar.less" />
+    <Content Include="Content\template\bootstrap\less\navs.less" />
+    <Content Include="Content\template\bootstrap\less\normalize.less" />
+    <Content Include="Content\template\bootstrap\less\pager.less" />
+    <Content Include="Content\template\bootstrap\less\pagination.less" />
+    <Content Include="Content\template\bootstrap\less\panels.less" />
+    <Content Include="Content\template\bootstrap\less\popovers.less" />
+    <Content Include="Content\template\bootstrap\less\print.less" />
+    <Content Include="Content\template\bootstrap\less\progress-bars.less" />
+    <Content Include="Content\template\bootstrap\less\responsive-embed.less" />
+    <Content Include="Content\template\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Content\template\bootstrap\less\scaffolding.less" />
+    <Content Include="Content\template\bootstrap\less\tables.less" />
+    <Content Include="Content\template\bootstrap\less\theme.less" />
+    <Content Include="Content\template\bootstrap\less\thumbnails.less" />
+    <Content Include="Content\template\bootstrap\less\tooltip.less" />
+    <Content Include="Content\template\bootstrap\less\type.less" />
+    <Content Include="Content\template\bootstrap\less\utilities.less" />
+    <Content Include="Content\template\bootstrap\less\variables.less" />
+    <Content Include="Content\template\bootstrap\less\wells.less" />
+    <Content Include="Content\template\plugin\datepicker\less\datepicker.less" />
+    <Content Include="Content\template\plugin\datepicker\build\build.less" />
+    <Content Include="Content\template\plugin\datepicker\build\build_standalone.less" />
+    <None Include="Properties\PublishProfiles\PuneMandir Mahotsav.pubxml" />
+    <None Include="Properties\PublishProfiles\YuvakAttendance.pubxml" />
+    <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\_Login.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\City\Index.cshtml" />
+    <Content Include="Views\City\_CityList.cshtml" />
+    <Content Include="Views\City\ManageCity.cshtml" />
+    <Content Include="Views\Mandal\Index.cshtml" />
+    <Content Include="Views\Mandal\_MandalList.cshtml" />
+    <Content Include="Views\Mandal\ManageMandal.cshtml" />
+    <Content Include="Views\Yagna\ManageYagnaSeva.cshtml" />
+    <Content Include="Views\Yagna\List.cshtml" />
+    <Content Include="Views\Yagna\_YagnaList.cshtml" />
+    <Content Include="Views\Shared\_Paging.cshtml" />
+    <Content Include="Views\SevaGrade\Index.cshtml" />
+    <Content Include="Views\SevaGrade\_SevaGradeList.cshtml" />
+    <Content Include="Views\SevaGrade\ManageSevaGrade.cshtml" />
+    <Content Include="Views\SevaType\List.cshtml" />
+    <Content Include="Views\SevaType\ManageSevaType.cshtml" />
+    <Content Include="Views\SevaType\_SevaTypeList.cshtml" />
+    <Content Include="Views\Yagna\RegistrationSummary.cshtml" />
+    <Content Include="Views\Yagna\_ErrorSummary.cshtml" />
+    <Content Include="Views\Yagna\ManageEMI.cshtml" />
+    <Content Include="Views\Yagna\EMI.cshtml" />
+    <Content Include="Views\Yagna\AddEMI.cshtml" />
+    <Content Include="Views\Report\YajmansList.cshtml" />
+    <Content Include="Reports\Yajmans.rdl" />
+    <Content Include="Views\Yagna\ManageReferral.cshtml" />
+    <Content Include="Views\Yagna\ReferralList.cshtml" />
+    <Content Include="Views\Yagna\_ReferralSevaList.cshtml" />
+    <Content Include="Reports\ReferralYagnaSeva.rdl" />
+    <Content Include="Views\Report\ReferralSevaList.cshtml" />
+    <Content Include="Views\Report\_LoadReport.cshtml" />
+    <Content Include="Views\Yagna\_DuplicateYajman.cshtml" />
+    <Content Include="Views\Report\CityWiseSummary.cshtml" />
+    <Content Include="Reports\CityWiseSummary.rdl" />
+    <Content Include="Views\Report\MandalWiseSummary.cshtml" />
+    <Content Include="Reports\MandalWiseSummary.rdl" />
+    <Content Include="Views\Report\YajmanSummary.cshtml" />
+    <Content Include="Reports\YajmanSummary.rdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PMM.Core\PMM.Core.csproj">
+      <Project>{624694d1-4a1e-42e2-8e9a-bc8a522981d2}</Project>
+      <Name>PMM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMM.Data\PMM.Data.csproj">
+      <Project>{6253301f-739c-4170-8d2d-c8fe7f04a13e}</Project>
+      <Name>PMM.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMM.Service\PMM.Service.csproj">
+      <Project>{34a3a171-1481-4888-9fdf-8d5723ee1b37}</Project>
+      <Name>PMM.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>1042</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1050/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

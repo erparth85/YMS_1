@@ -1,0 +1,83 @@
+﻿@model YagnaSevaModel
+@using PMM.Web.Models.Yagna;
+
+
+<table class="table table-bordered table-hover">
+    <tr class="headings">
+        @if (Model.ErrorType == RegistrationErrorTypes.FormNo)
+        {
+            <th>FormNo</th>
+        }
+        else
+        {
+            <th>BookNo</th>
+            <th>ReceiptNo</th>
+            if (Model.ErrorType == RegistrationErrorTypes.TransactionNumber)
+            {
+                <th>Transaction No</th>
+                <th>Bank Name</th>
+            }
+        }
+
+        <th>YajmanName</th>
+        <th>KaryakarName</th>
+        <th>Mobile</th>
+        <th>SankalpAmount</th>
+
+        @if (Model.ErrorType != RegistrationErrorTypes.FormNo)
+        {
+            <th>PaidAmount</th>
+        }
+    </tr>
+    @if (Model != null)
+    {
+        for (int i = 0; i < Model.ErrorSummary.Count; i++)
+        {
+            var data = Model.ErrorSummary[i];
+
+            <tr class="pointer">
+                @if (Model.ErrorType == RegistrationErrorTypes.FormNo)
+                {
+                    <td>@data.FormNo</td>
+                }
+                else
+                {
+                    <td>@data.BookNo</td>
+                    <td>@data.ReceiptNo</td>
+                    if (Model.ErrorType == RegistrationErrorTypes.TransactionNumber)
+                    {
+                        <td>@data.TransactionNumber</td>
+                        <td>@data.BankName</td>
+                    }
+                }
+                <td>
+                    <a href='@Url.RouteUrl("EMI", new { id = data.PRN })' target="_blank">
+                        @data.YajmanFullName
+                    </a>
+                </td>
+                <td>@data.KaryakarFullName</td>
+                <td>@data.MobileNumber</td>
+
+                <td>@data.SankalpAmount</td>
+
+                @if (Model.ErrorType != RegistrationErrorTypes.FormNo)
+                {
+                    <td>@data.PaidAmount</td>
+                }
+            </tr>
+
+        }
+    }
+    else
+    {
+
+        <p>Please try again to add/update yajman detail.</p>
+
+    }
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $("#errorModel").modal('toggle');
+    })
+</script>

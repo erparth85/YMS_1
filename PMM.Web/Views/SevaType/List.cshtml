@@ -1,0 +1,65 @@
+﻿
+@model SevaTypeListModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Manage SevaType
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2 pr5 pl0">
+                        <a href="@Url.RouteUrl("ManageSevaType")">
+                            <input type="button" value="Add New" id="btnAdd" class="btn btn-block btn-primary" />
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="type-list">
+                        @Html.Partial("_SevaTypeList")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    LoadSevaTypes();
+
+    function LoadSevaTypes() {
+        $(".type-list").load('/type/list');
+    }
+
+    function deleteSeva(id) {
+        if (confirm('Are you sure want to delete this seva type detail?')) {
+            $.ajax({
+                url: '@Url.RouteUrl("DeleteSevaType")',
+                data: { "id": id },
+                success: function (data) {
+
+                    $(".type-list").html(data);
+                    //$(".page-number").removeClass("selectedPage");
+                    //$("#page" + pagenumber).addClass("selectedPage");
+
+                }
+            });
+        }
+    }
+</script>

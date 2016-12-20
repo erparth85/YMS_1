@@ -1,0 +1,58 @@
+﻿
+@model YagnaSevaListModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.YagnaSevaList.Count > 0)
+        {
+            <tr class="headings">
+                <th class="bold">ID</th>
+                <th class="bold">GRADE</th>
+                <th class="bold">NAME</th>
+                <th class="bold">CITY</th>
+                <th class="bold">MANDAL</th>
+                <th class="bold">MOBILENO</th>
+                <th class="bold">REFERREDBY</th>
+                <th class="bold">REFERRAL-MOBILE</th>
+                <th class="bold">ACTION</th>
+            </tr>
+            for (int i = 0; i < Model.YagnaSevaList.Count; i++)
+            {
+
+                var item = Model.YagnaSevaList[i];
+
+                <tr class="pointer">
+                    <td class="wordWrap">@item.PRN</td>
+                    <td class="wordWrap">@item.SevaGradeTitle</td>
+                    <td class="wordWrap">@item.Yajmans.FullName</td>
+                    <td class="wordWrap">@item.Yajmans.CityName</td>
+                    <td class="wordWrap">@item.Yajmans.MandalName</td>
+                    <td class="wordWrap">@item.Yajmans.Mobile</td>
+                    <td class="wordWrap">@item.Karyakar.FullName</td>
+                    <td class="wordWrap">@item.Karyakar.Mobile</td>
+                    <td class="wordWrap">
+                      
+                        <a href='@Url.RouteUrl("ManageReferral", new { id = item.Id })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                        <a href="javascript:deletereferralSeva(@item.Id);" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+
+                    </td>
+                </tr>
+
+            }
+            @Html.Partial("_Paging", Model)
+
+        }
+        else
+        {
+            <tr class="col-md-12 pl5 pr5">
+                <td>
+                    <span class="font14">@CommonHelper.ValMsgEmptyNoRecord</span>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>

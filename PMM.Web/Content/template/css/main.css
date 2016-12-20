@@ -1,0 +1,125 @@
+﻿.pl0 {
+    padding-left: 0px;
+}
+
+.pl5 {
+    padding-left: 5px;
+}
+
+.pr0 {
+    padding-right: 0px;
+}
+
+.pr5 {
+    padding-right: 5px;
+}
+
+.pt0 {
+    padding-top: 0px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.pb0 {
+    padding-bottom: 0px;
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.grd-small-btn {
+    width: 28% !important;
+}
+
+.border0 {
+    border: 0px solid #73879C;
+}
+
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.ui-autocomplete-loading {
+    background: url('../img/magnify.gif') no-repeat;
+    background-position: inherit;
+    background-position-x: 270px;
+    background-position-y: -5px;
+}
+
+.ui-autocomplete.ui-menu {
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 0px;
+    border: 1px solid #454545;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/loader.gif') center no-repeat #fff;
+}
+
+th {
+    background-color: #f5f5f5;
+}
+
+.active-page {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #3c8dbc;
+}
+
+.selectedPage {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
+.pager {
+    border: 1px solid black;
+    font-size: 14px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.blue-color {
+    color: blue;
+}
+
+
+.icheckbox_flat-green {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.height500 {
+    min-height: 500px;
+}
+
+.modal-dialog {
+    width: 900px;
+    margin: 30px auto;
+}

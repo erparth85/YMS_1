@@ -1,0 +1,55 @@
+﻿@model ReferralYagnaSevaModel
+@using PMM.Web.Models.Yagna;
+
+
+<table class="table table-bordered table-hover">
+    <tr class="headings">
+        <th>Id</th>
+        <th>YajmanName</th>
+        <th>YajmanMobileNo</th>
+        <th>KaryakarName</th>
+        <th>Mobile</th>
+        <th>SankalpAmount</th>
+        <th>AvailableForYagna</th>
+        <th>PaidAmount</th>
+    </tr>
+    @if (Model != null)
+    {
+        for (int i = 0; i < Model.ErrorSummary.Count; i++)
+        {
+            var data = Model.ErrorSummary[i];
+
+            <tr class="pointer">
+                <td>
+                    <a href='@Url.RouteUrl("EMI", new { id = data.PRN })' target="_blank">
+                        @data.YagnaSevaId
+                    </a>
+                </td>
+                <td>
+                    <a href='@Url.RouteUrl("EMI", new { id = data.PRN })' target="_blank">
+                        @data.YajmanFullName
+                    </a>
+                </td>
+                <td>@data.YajmanMobileNo</td>
+                <td>@data.KaryakarFullName</td>
+                <td>@data.MobileNumber</td>
+                <td>@data.SankalpAmount</td>
+                <td>@data.AvailableForYagna</td>
+                <td>@data.PaidAmount</td>
+                </tr>
+
+        }
+    }
+    else
+    {
+
+        <p>Please try again to add/update yajman detail.</p>
+
+    }
+</table>
+
+<script type="text/javascript">
+    $(function () {
+        $("#errorModel").modal('toggle');
+    })
+</script>

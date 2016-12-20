@@ -1,0 +1,74 @@
+﻿@model FilterSummaryModel
+@using PMM.Web.Models.Report;
+@using PMM.Core;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                REPORT: CITY WISE SUMMARY
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+
+                <div class="x_content col-md-11">
+
+                    @using (Html.BeginRouteForm("FilterCityWiseSummary", FormMethod.Post, new { id = "filterReport" }))
+                    {
+                        
+                        <div class="col-md-12">
+
+                            <div class="col-md-3 pt10">
+                                @Html.DropDownListFor(model => model.CityId, Model.CityList, new { @multiple = "multiple", @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForCity })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                @Html.DropDownListFor(m => m.ReportSelectedColumns, Model.ColumnsList, new { @multiple = "multiple", @class = "form-control" })
+                            </div>
+                            <div class="col-md-1 pt10">
+                                <input type="submit" id="btnsubmit" value="Search" class="btn btn-success" />
+                            </div>
+                            <div class="col-md-1 pt10">
+                                <a href="@Url.RouteUrl("CityWiseSummary")">
+                                    <input type="button" id="search-city" value="Reset" class="btn btn-block btn-warning" />
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 pt10"></div>
+                        </div>
+                    }
+
+                    <div class="summary"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#CityId').multiselect();
+        $('#ReportSelectedColumns').multiselect();
+
+        $("#filterReport").submit(function (e) {
+            e.preventDefault();
+            $form = $(this);
+            obj = $form.serialize();
+            $.ajax({
+                url: $form.attr('action'),
+                type: "POST",
+                data: obj,
+                success: function (data) {
+                    $(".summary").html(data);
+                }
+            });
+            return false;
+        })
+    })
+</script>

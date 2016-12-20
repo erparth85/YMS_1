@@ -1,0 +1,118 @@
+﻿@model FilterSummaryModel
+@using PMM.Web.Models.Report;
+@using PMM.Core;
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                REPORT: MANDAL WISE SUMMARY
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+
+                <div class="x_content col-md-11">
+
+                    @using (Html.BeginRouteForm("FilterMandalWiseSummary", FormMethod.Post, new { id = "filterReport" }))
+                    {
+
+                        <div class="col-md-12">
+                            <div class="col-md-1 pt10">
+                                <label class="control-label">City :</label>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.CityId, Model.CityList, new { @multiple = "multiple", @class = "form-control" })
+                            </div>
+                            <div class="col-md-1 pt10">
+                                <label class="control-label">Mandal :</label>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.MandalId, Model.MandalList, new { @class = "form -control", @multiple = "multiple" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.DropDownListFor(m => m.ReportSelectedColumns, Model.ColumnsList, new { @multiple = "multiple", @class = "form-control" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="submit" id="filterReport" value="Search" class="btn btn-success" />
+                            </div>
+                            <div class="col-md-1">
+                                <a href="@Url.RouteUrl("MandalWiseSummary")">
+                                    <input type="button" id="search-mandal" value="Reset" class="btn btn-block btn-warning" />
+                                </a>
+                            </div>
+
+                            <div class="col-md-1 pt10"></div>
+                        </div>
+                    }
+
+                    <div class="summary"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        //$(".multiselect").addClass("form-control");
+        $('#ReportSelectedColumns').multiselect();
+
+        var $select = $('#MandalId').multiselect({
+            includeSelectAllOption: true
+        });
+        $select.multiselect('disable');
+
+        $("#CityId").multiselect();
+
+        $("#CityId").change(function () {
+            $select.multiselect('enable');
+
+            var selectedCity = [];
+            $('#CityId :selected').each(function (i, selected) {
+                selectedCity[i] = $(selected).val();
+            });
+
+            var mandalList = [];
+
+            $.get("../../mandal/LoadMandalBySelectedCity", { cityId: selectedCity.join(',') }, function (response) {
+                $('#MandalId').empty();
+                $.each(response.data, function (key, value) {
+                    if (value.Text != '@CommonHelper.PlaceHolderDrdForMandal') {
+                        //$("#Mandal").append($("<option value='" + value.Value + "'>" + value.Text + "</option>"));
+
+                        mandalList.push({
+                            'label': value.Text,
+                            'value': value.Value,
+                            'selected': 'selected'
+                        })
+                    }
+                });
+                $("#MandalId").multiselect('dataprovider', mandalList);
+                $("#MandalId").multiselect("refresh");
+            });
+        });
+
+        $("#filterReport").submit(function (e) {
+            e.preventDefault();
+            $form = $(this);
+            obj = $form.serialize();
+            $.ajax({
+                url: $form.attr('action'),
+                type: "POST",
+                data: obj,
+                success: function (data) {
+                    $(".summary").html(data);
+                }
+            });
+            return false;
+        })
+    })
+</script>

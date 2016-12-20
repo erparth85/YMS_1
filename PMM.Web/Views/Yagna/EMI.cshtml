@@ -1,0 +1,234 @@
+﻿@model YagnaSevaModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>EMI Detail</h3>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Yajman Detail</h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-12">
+                        <div class="col-md-9">
+                            <ul class="stats-overview">
+                                <li>
+                                    <span class="name"> ID </span>
+                                    <span class="value text-success"> @(Model.PRN == "" ? "-" : Model.PRN) </span>
+                                </li>
+                                <li>
+                                    <span class="name"> Name </span>
+                                    <span class="value text-success"> @Model.Yajmans.FullName </span>
+                                </li>
+                                <li>
+                                    <span class="name"> Contact No </span>
+                                    <span class="value text-success"> @Model.Yajmans.Mobile </span>
+                                </li>
+                            </ul>
+                            <ul class="stats-overview">
+                                <li>
+                                    <span class="title">Available On Yagna</span>
+                                    <span class="value  @(Model.AvailableForYagna==true?"text-success":"red")">@(Model.AvailableForYagna == true ? "YES" : "NO")</span>
+                                </li>
+                                <li>
+                                    <span class="name"> Chair Required </span>
+                                    <span class="value text-success @(Model.IsChairRequired==true?"text-success":"red")"> @(Model.IsChairRequired == false ? "NO" : "YES") </span>
+                                </li>
+                                <li class="hidden-phone">
+                                    <span class="name"> Seating Request </span>
+                                    <span class="value text-success">
+                                        @if (Convert.ToInt32(Model.SeatingReqYajmanId) > 0)
+                                        {
+                                            <a href='@Url.RouteUrl("EMI", new { id = Model.SeatingReqYajmanId})' target="_blank">
+                                                @Model.SeatingReqYajmanId
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <text>No Request</text>
+                                        }
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul class="stats-overview">
+                                <li>
+                                    <span class="name"> City </span>
+                                    <span class="value text-success"> @Model.Yajmans.CityName </span>
+                                </li>
+                                <li>
+                                    <span class="name"> Mandal </span>
+                                    <span class="value text-success"> @Model.Yajmans.MandalName </span>
+                                </li>
+                                <li>
+                                    <span class="name"> Address </span>
+                                    <span class="value text-success"> @(Model.Yajmans.Address == "" ? "-" : Model.Yajmans.Address) @(Model.Yajmans.PinCode == "" ? "-" : "," + Model.Yajmans.PinCode) </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+
+                            <section class="panel">
+                                <div class="x_title">
+                                    <h2>SEVA DETAIL</h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="project_detail">
+                                        <p class="title">Sankalp Amount</p>
+                                        <p>@Model.SankalpAmount</p>
+                                        <p class="title">Paid Amount</p>
+                                        <p>@Model.AccountDetail.PaidAmount</p>
+
+                                    </div>
+
+                                    <div class="pt10">
+                                        @if (Convert.ToInt32(Model.AccountDetail.DueAmount) > 0)
+                                        {
+                                            <a href='@Url.RouteUrl("AddEMI", new { aid = Model.PRN })' class="btn btn-xs btn-primary">Add EMI</a>
+
+                                        }
+                                        @if (!string.IsNullOrWhiteSpace(Model.Karyakar.CityName))
+                                        {
+                                            <a href='@Url.RouteUrl("ManageYagnaSeva", new { id = Model.Id })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit Profile </a>
+                                        }
+                                        else
+                                        {
+                                            <a href='@Url.RouteUrl("ManageReferral", new { id = Model.Id })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit Profile </a>
+                                        }
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="x_content">
+                    <div class="col-md-12">
+                        <div class="x_title">
+                            <a data-toggle="collapse" href="#KaryakarDetailCollapse">
+                                <h2>Karyakar Detail</h2>
+                                <div class="clearfix"></div>
+                            </a>
+                        </div>
+
+                        <div id="KaryakarDetailCollapse" class="panel-collapse collapse">
+                            <div class="col-md-12">
+                                <ul class="stats-overview">
+                                    <li>
+                                        <span class="name"> Name </span>
+                                        <span class="value text-success"> @Model.Karyakar.FullName </span>
+                                    </li>
+                                    <li>
+                                        <span class="name"> Contact No </span>
+                                        <span class="value text-success"> @Model.Karyakar.Mobile </span>
+                                    </li>
+                                    <li>
+                                    </li>
+                                </ul>
+                                <ul class="stats-overview">
+
+                                    <li>
+                                        <span class="name"> City </span>
+                                        <span class="value text-success"> @Model.Karyakar.CityName </span>
+                                    </li>
+                                    <li>
+                                        <span class="name"> Mandal </span>
+                                        <span class="value text-success"> @Model.Karyakar.MandalName </span>
+                                    </li>
+                                    <li>
+                                        <span class="name"> Address </span>
+                                        <span class="value text-success"> @(Model.Karyakar.Address == "" ? "-" : Model.Karyakar.Address) @(Model.Karyakar.PinCode == "" ? "-" : "," + Model.Karyakar.PinCode) </span>
+
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="x_content col-md-12">
+                    <div class="x_title">
+                        <h2>Transaction Detail</h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            @if (Model.TransactionDetails.Count > 0)
+                            {
+                                <tr class="headings">
+                                    <th class="bold">ID</th>
+                                    <th class="bold">BookNo</th>
+                                    <th class="bold">ReceiptNo</th>
+                                    <th class="bold">TransactionType</th>
+                                    <th class="bold">Transaction No</th>
+                                    <th class="bold">DateOfIssue</th>
+                                    <th class="bold">Bank Name</th>
+                                    <th class="bold">Amount</th>
+                                    <th class="bold">ACTION</th>
+                                </tr>
+                                for (int i = 0; i < Model.TransactionDetails.Count; i++)
+                                {
+
+                                    var item = Model.TransactionDetails[i];
+
+                                    <tr class="pointer">
+                                        <td class="wordWrap">@(i + 1)</td>
+                                        <td class="wordWrap">@item.BookNumber</td>
+                                        <td class="wordWrap">@item.ReceiptNumber</td>
+                                        <td class="wordWrap">@item.TransactionTypeName</td>
+                                        <td class="wordWrap">@item.TransactionNumber</td>
+                                        <td class="wordWrap">@item.DateOfIssue</td>
+                                        <td class="wordWrap">@item.BankName</td>
+                                        <td class="wordWrap">@item.Amount</td>
+                                        <td class="wordWrap">
+                                            <a href='@Url.RouteUrl("ManageEMI", new { pid = item.PRN,aId=item.AccountId })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                            <a href='@Url.RouteUrl("DeleteEMI", new { id = item.PRN,aId=item.AccountId })' class="btn btn-danger btn-xs" onclick='return confirm("Are you sure want to delete this emi?")'><i class="fa fa-trash-o"></i> Delete </a>
+
+                                        </td>
+                                    </tr>
+
+                                }
+
+                            }
+                            else
+                            {
+                                <tr class="col-md-12 pl5 pr5">
+                                    <td>
+                                        <span class="font14">@CommonHelper.ValMsgEmptyNoRecord</span>
+                                    </td>
+                                </tr>
+
+                            }
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

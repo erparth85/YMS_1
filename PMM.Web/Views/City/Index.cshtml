@@ -1,0 +1,75 @@
+﻿@model CityListModel
+@using PMM.Web.Models;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                Manage City
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                   
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2 pr5 pl0">
+                        <a href="@Url.RouteUrl("ManageCity")">
+                            <input type="button" value="Add New" id="btnAdd" class="btn btn-block btn-primary" />
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="city-list pt10">
+
+                        @Html.Partial("_CityList")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        LoadCityList();
+    });
+    function LoadCityList() {
+        $.ajax({
+            url: '@Url.RouteUrl("CityList")',
+            data: {},
+            success: function (data) {
+
+                $(".city-list").html(data);
+                //$(".page-number").removeClass("selectedPage");
+                //$("#page" + pagenumber).addClass("selectedPage");
+
+            }
+        });
+    }
+
+    function DeleteCity(id) {
+        if (confirm('Are you sure want to delete this city detail?')) {
+            $.ajax({
+                url: '@Url.RouteUrl("DeleteCity")',
+                data: { "id": id },
+                success: function (data) {
+
+                    $(".city-list").html(data);
+                    //$(".page-number").removeClass("selectedPage");
+                    //$("#page" + pagenumber).addClass("selectedPage");
+
+                }
+            });
+        }
+    }
+</script>

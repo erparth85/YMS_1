@@ -1,0 +1,51 @@
+﻿@model CityModel
+@using PMM.Web.Models;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using (Html.BeginRouteForm("ManageCity", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(t => t.Id)
+
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>
+                    Manage City
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+
+                        <h2>Add | Update City Detail </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-12 pt10">
+                            @Html.ValidationMessage("error")
+                        </div>
+                        <div class="col-md-12 pt10 pb10">
+                            <label class="control-label" for="Title">City</label>
+                            @Html.TextBoxFor(t => t.Title, new { @class = "form-control", placeholder = "Enter City Name...", required = "required" })
+                        </div>
+                     
+                        <div class="col-md-12 pt10 pb10">
+                            <input type="submit" value="Save" class="btn btn-success" />
+                            <a href="@Url.RouteUrl("CityHome")">
+                                <input type="button" value="Cancel" class="btn btn-danger" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+

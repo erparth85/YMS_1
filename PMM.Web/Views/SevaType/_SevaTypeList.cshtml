@@ -1,0 +1,53 @@
+﻿
+@model SevaTypeListModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        @if (Model.SevaTypes.Count > 0)
+        {
+            <tr class="headings">
+                <th class="bold">ID</th>
+                <th class="bold">Grade</th>
+                <th class="bold">Type</th>
+                <th class="bold">Amount</th>
+                <th class="bold">ACTION</th>
+            </tr>
+            for (int i = 0; i < Model.SevaTypes.Count; i++)
+            {
+
+                var item = Model.SevaTypes[i];
+
+                <tr class="pointer">
+                    <td class="wordWrap">@(i+1)</td>
+                    <td class="wordWrap">@item.SevaGradeText</td>
+                    <td class="wordWrap">@item.SevaTypeText</td>
+                    <td class="wordWrap">@item.Amount</td>
+
+                    <td class="wordWrap">
+                        <a href='@Url.RouteUrl("ManageSevaType", new { id = item.Id })' class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+
+
+                        <a href="javascript:deleteSeva(@item.Id);" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+
+                    </td>
+                </tr>
+
+            }
+         
+
+        }
+        else
+        {
+            <tr class="col-md-12 pl5 pr5">
+                <td>
+                    <span class="font14">@CommonHelper.ValMsgEmptyNoRecord</span>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
+

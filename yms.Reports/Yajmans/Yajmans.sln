@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Yajmans", "Yajmans\Yajmans.rptproj", "{2851B309-660F-45B5-8672-8F58E23EEE2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Debug|Default.ActiveCfg = Debug
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Debug|Default.Build.0 = DebugLocal
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Debug|Default.Deploy.0 = DebugLocal
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.DebugLocal|Default.Build.0 = DebugLocal
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Release|Default.ActiveCfg = Release
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Release|Default.Build.0 = Release
+		{2851B309-660F-45B5-8672-8F58E23EEE2C}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

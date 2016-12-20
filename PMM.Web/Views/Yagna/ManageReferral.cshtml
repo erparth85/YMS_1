@@ -1,0 +1,366 @@
+﻿@model ReferralYagnaSevaModel
+@using PMM.Web.Models.Yagna;
+@using PMM.Core;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>
+                MANAGE REFERRAL
+            </h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginRouteForm("ManageReferral", FormMethod.Post, new { @id = "referralForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(t => t.Id)
+                @Html.HiddenFor(t => t.PRN)
+                @Html.HiddenFor(t => t.Yajmans.Id)
+                @Html.HiddenFor(t => t.RefferalDetail.Id)
+                @Html.HiddenFor(t => t.IsContinue)
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="col-md-12 ">
+                            <span class="section">
+                                Yajman Detail
+                            </span>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="col-md-12 ">
+                            <div class="col-md-3 pt10">
+                                <label for="FirstName">FirstName</label>
+                                @Html.TextBoxFor(t => t.Yajmans.FirstName, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForFirstName })
+                                @Html.ValidationMessageFor(t => t.Yajmans.FirstName)
+
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="MiddleName">FatherName</label>
+                                @Html.TextBoxFor(t => t.Yajmans.MiddleName, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForMiddleName })
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="LastName">SurName</label>
+                                @Html.TextBoxFor(t => t.Yajmans.LastName, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForLastName })
+                                @Html.ValidationMessageFor(t => t.Yajmans.LastName)
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="Mobile">Mobile</label>
+                                @Html.TextBoxFor(t => t.Yajmans.Mobile, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForMobileNo, @maxlength = 15, onkeypress = "return isNumberkey(event);" })
+                                @Html.ValidationMessageFor(t => t.Yajmans.Mobile)
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="col-md-3 pt10">
+                                <label for="CityId">City</label>
+                                @Html.DropDownListFor(t => t.Yajmans.CityId, Model.Yajmans.CityList, new { @class = "chzn-select form-control", placeholder = CommonHelper.PlaceHolderDrdForCity })
+                                @Html.ValidationMessageFor(t => t.Yajmans.CityId)
+
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="MandalId">Mandal</label>
+                                @Html.DropDownListFor(t => t.Yajmans.MandalId, Model.Yajmans.Mandals, new { @class = "chzn-select form-control", placeholder = CommonHelper.PlaceHolderDrdForMandal })
+                                @Html.ValidationMessageFor(t => t.Yajmans.MandalId)
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="Address">Address</label>
+                                @Html.TextAreaFor(t => t.Yajmans.Address, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForAddress })
+                                @Html.ValidationMessageFor(t => t.Yajmans.Address)
+
+
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="PinCode">PinCode</label>
+                                @Html.TextBoxFor(t => t.Yajmans.PinCode, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForPinCode, @maxlength = 6, onkeypress = "return isNumberkey(event);" })
+                                @*@Html.ValidationMessageFor(t => t.Yajmans.PinCode)*@
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-3 pt10">
+                                <label for="SeatingReqYajmanId">Seating With Yajman</label>
+                                @Html.TextBoxFor(t => t.SeatingReqYajmanId, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForPRNNo })
+                                <a href="@Url.RouteUrl("Yagna")" class="blue-color" target="_blank">Don't know ID</a>
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="AvailableForYagna">AvailableForYagna</label>
+                                @Html.CheckBoxFor(t => t.AvailableForYagna, new { @class = "form-control icheckbox_flat -green" })
+
+                            </div>
+                            <div class="col-md-3 pt10">
+                                <label for="AvailableForYagna">IsChairRequired</label>
+                                @Html.CheckBoxFor(t => t.IsChairRequired, new { @class = "form-control icheckbox_flat -green" })
+                            </div>
+                            <div class="col-md-3 pt10">
+                            </div>
+                        </div>
+                        <div class="col-md-12 pt10">
+                            <span class="section">Seva Detail</span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-4 pt10">
+                                <label for="SevaGradeId">Seva Grade</label>
+                                @Html.DropDownListFor(t => t.SevaGradeId, Model.SevaGrades, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForSevaGrade })
+                                @Html.ValidationMessageFor(t => t.SevaGradeId)
+                            </div>
+                            <div class="col-md-4 pt10">
+                                <label for="Remarks">Remarks</label>
+                                @Html.TextAreaFor(t => t.Remarks, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderDrdForRemarks })
+                            </div>
+                            <div class="col-md-4 pt10">
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12 pt10">
+                            <span class="section">Referral Detail</span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-4 pt10">
+
+                                <label for="RefferalDetail_Mobile">Mobile No</label>
+                                @Html.TextBoxFor(t => t.RefferalDetail.Mobile, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForMobileNo, @maxlength = 15, onkeypress = "return isNumberkey(event);" })
+                                @Html.ValidationMessageFor(t => t.RefferalDetail.Mobile)
+
+                            </div>
+
+                            <div class="col-md-4 pt10">
+                                <label for="RefferalDetail_Name">Name</label>
+                                @Html.TextBoxFor(t => t.RefferalDetail.Name, new { @class = "form-control", placeholder = CommonHelper.PlaceHolderTxtForFirstName, })
+                                @Html.ValidationMessageFor(t => t.RefferalDetail.Name)
+                            </div>
+                            <div class="col-md-4 pt10">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pb10">
+                            <div class="col-md-1 pt10 pr0">
+                                <input type="submit" value="Save" class="btn btn-success" />
+                            </div>
+                            <div class="col-md-1 pt10 pl0 pr0"><input type="reset" value="Reset" class="btn btn-info" /></div>
+                            <div class="col-md-1 pt10 pl0 pr0">
+                                <a href="@Url.RouteUrl("Refferal")">
+                                    <input type="button" value="Cancel" class="btn btn-danger" onclick="return confirm('Are you sure want to cancel this request?')" />
+                                </a>
+                            </div>
+                            <div class="col-md-9 pt10"></div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@if (Model.ErrorSummary != null && Model.ErrorSummary.Count > 0)
+{
+    <div class="">
+        <div id="errorModel" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ERROR SUMMARY</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <p>@Model.ErrorMessage</p>
+                        </div>
+
+                        @Html.Partial("_DuplicateYajman", Model)
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-primary" value="Continue To Save Detail" id="btnContinue" />
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+
+    $(function () {
+        // CalculateSevaAmount();
+        $(".chzn-select").chosen();
+
+        var _searchResult = [];
+        $("#btnContinue").click(function () {
+            $("#IsContinue").val(true);
+            $("#referralForm").submit();
+
+        })
+        $("#Yajmans_CityId").change(function () {
+            $('#Yajmans_MandalId').empty().trigger('liszt:updated');
+            $.get("../../mandal/loadmandalbycity", { cityId: $("#Yajmans_CityId").val() }, function (response) {
+
+                $.each(response.data, function (key, value) {
+                    $("#Yajmans_MandalId").append($("<option value='" + value.Value + "'>" + value.Text + "</option>"));
+                });
+                $('#Yajmans_MandalId').trigger("liszt:updated");
+            });
+        });
+
+
+        $("#Karyakar_CityId").change(function () {
+            LoadMandals($("#Karyakar_CityId").val(), 0);
+        });
+
+        function LoadMandals(city, selectedMandal) {
+            $('#Karyakar_MandalId').empty().trigger('liszt:updated');
+            $.get("../../mandal/loadmandalbycity", { cityId: city }, function (response) {
+
+                $.each(response.data, function (key, value) {
+                    $("#Karyakar_MandalId").append($("<option value='" + value.Value + "'>" + value.Text + "</option>"));
+                });
+                $('#Karyakar_MandalId').trigger("liszt:updated");
+                if (parseInt(selectedMandal) > 0) {
+
+                    $("#Karyakar_MandalId").val(selectedMandal);
+                    $("#Karyakar_MandalId").trigger("liszt:updated");
+                }
+            });
+        }
+
+        $("#RefferalDetail_Mobile").autocomplete({
+
+            source: function (request, response) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: '/referral/mobile',
+                    data: "{'searchTxt':'" + $("#RefferalDetail_Mobile").val() + "'}",
+                    dataType: "json",
+                    error: function (result) {
+                        alert("Please try again.");
+                    },
+                    success: function (result) {
+                        $(".ui-helper-hidden-accessible").hide();
+                        if (result.status == "success") {
+                            response($.map(result.data, function (item) {
+
+                                return {
+                                    value: item.Mobile,
+                                    label: ' ' + item.Mobile + '(' + item.FullName + ')',
+                                    name: item.FullName,
+                                    id: item.Id
+                                }
+                            }));
+                        }
+                    }
+                });
+            },
+            minLength: 10,
+            select: function (event, ui) {
+
+                $("#RefferalDetail_Name").val(ui.item.name == "New" ? "" : ui.item.name);
+
+                $("#RefferalDetail_Id").val(ui.item.id);
+            },
+        });
+
+
+
+
+        jQuery.validator.addMethod("SelectedCity", validateDropdownValue, "@CommonHelper.PlaceHolderDrdForCity");
+        jQuery.validator.addMethod("SelectedMandal", validateDropdownValue, "@CommonHelper.PlaceHolderDrdForMandal");
+        jQuery.validator.addMethod("SelectedGrade", validateDropdownValue, "@CommonHelper.ValMsgDrdForSevaGrade");
+
+        $.validator.setDefaults({ ignore: ":hidden:not(select)" });
+
+        $("#referralForm").validate({
+
+            rules: {
+
+                'Yajmans.FirstName': { required: true },
+                'Yajmans.LastName': { required: true },
+                'Yajmans.Mobile': {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 15,
+                    number: true
+                },
+                "Yajmans.CityId": { SelectedCity: '0' },
+                "Yajmans.MandalId": { SelectedMandal: '0' },
+                'Yajmans.Address': { required: true },
+                "SevaGradeId": { SelectedGrade: '0' },
+                'RefferalDetail.Name': { required: true },
+                'RefferalDetail.Mobile': {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 15,
+                    number: true
+                },
+            },
+            messages:
+                                    {
+                                        'Yajmans.FirstName': { required: '@CommonHelper.ValMsgTxtForFirstName' },
+                                        'Yajmans.LastName': { required: '@CommonHelper.ValMsgTxtForLastName' },
+                                        'Yajmans.Mobile': {
+                                            required: '@CommonHelper.ValMsgTxtForMobileNo',
+                                            minlength: '@CommonHelper.ValMsgTxtForMobileMinLength',
+                                            maxlength: '@CommonHelper.ValMsgTxtForMobileMaxLength'
+                                        },
+                                        "Yajmans.CityId": {
+                                            SelectedCity: '@CommonHelper.ValMsgDrdForCity'
+                                        },
+                                        "Yajmans.MandalId": {
+                                            SelectedMandal: '@CommonHelper.ValMsgDrdForMandal'
+                                        },
+                                        'Yajmans.Address': { required: '@CommonHelper.ValMsgTxtForAddress' },
+                                        @*'Yajmans.PinCode': { required: '@CommonHelper.ValMsgTxtForPinCode' },*@
+                                        "SevaGradeId": {
+                                            SelectedGrade: '@CommonHelper.ValMsgDrdForSevaGrade'
+                                        },
+
+                                        'RefferalDetail.Name': { required: '@CommonHelper.ValMsgTxtForFirstName' },
+                                        'RefferalDetail.Mobile': {
+                                            required: '@CommonHelper.ValMsgTxtForMobileNo',
+                                            minlength: '@CommonHelper.ValMsgTxtForMobileMinLength',
+                                            maxlength: '@CommonHelper.ValMsgTxtForMobileMaxLength'
+                                        }
+                                    },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+
+
+        function validateDropdownValue(value, element, param) {
+
+            if (value == param) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    })
+
+
+</script>
